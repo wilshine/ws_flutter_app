@@ -1,0 +1,54 @@
+name: ws_flutter_app
+description: "完整的App示例"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  shared_preferences: 2.2.3 # 数据持久化
+  flutter_screenutil: 5.9.3 # 屏幕适配
+  go_router: # 路由管理
+  get: 4.6.6 # 状态管理
+  common_tools:
+    path: ../common_tools
+
+  card_swiper: 3.0.1 # 轮播图
+  flutter_easyloading: #
+  fluttertoast:
+  flutter_svg:  # 支持svg格式
+  svgaplayer_flutter: # 支持svga格式
+  audio_session:
+  just_audio:
+  flutter_sound:
+  image_picker: 1.1.2
+  file_picker:
+  easy_refresh: # 下拉刷新
+  json_annotation:
+  json_serializable:
+  flutter_slidable:
+  sqflite:
+  open_file:
+  extended_text_field:
+  cached_network_image:
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  build_runner:
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/home/
+    - assets/images/find/
+    - assets/svg/
+    - assets/webp/
