@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_article_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_im_model.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 import '../../../../ws_services/ws_app_service.dart';
 import '../../../../ws_utils/ws_file_util.dart';
@@ -60,7 +60,7 @@ class WSFindController extends GetxController {
     //   WSAppService.instance.refreshArticles();
     //   initArticleList();
     //   Get.back();
-    //   WSToastUtil.show('post successfully');
+    //   WSToast.show('post successfully');
     // } catch (e, s) {
     //   WSLogger.error('$e  $s');
     // } finally {
@@ -98,10 +98,10 @@ class WSFindController extends GetxController {
             EasyLoading.show();
             if (isFollowed) {
               await WSAppService.instance.unFriend(userId);
-              WSToastUtil.show('Unfollow Successfully');
+              WSToast.show('Unfollow Successfully');
             } else {
               await WSAppService.instance.addFriend(userId);
-              WSToastUtil.show('Follow Successfully');
+              WSToast.show('Follow Successfully');
             }
           } catch (e, s) {
             // WSLogger.error('$e  $s');
@@ -117,7 +117,7 @@ class WSFindController extends GetxController {
             EasyLoading.show();
             // WSLogManger().putLog(WSLogType.clickEvent, {'page': WSLogPages.pageBlock});
             await WSAppService.instance.blockUser(userId);
-            WSToastUtil.show('Block Successfully');
+            WSToast.show('Block Successfully');
             Get.back();
           } finally {
             EasyLoading.dismiss();
@@ -149,10 +149,10 @@ class WSFindController extends GetxController {
                           EasyLoading.show();
                           await WSAppService.instance.report(userId, e);
                           await Future.delayed(const Duration(seconds: 3));
-                          WSToastUtil.show('Report Successfully');
+                          WSToast.show('Report Successfully');
                           Navigator.pop(context);
                         } catch (e) {
-                          WSToastUtil.show('Report Failed');
+                          WSToast.show('Report Failed');
                         } finally {
                           EasyLoading.dismiss();
                         }

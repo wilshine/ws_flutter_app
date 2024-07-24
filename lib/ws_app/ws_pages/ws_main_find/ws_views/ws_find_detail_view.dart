@@ -9,7 +9,7 @@ import 'package:ws_flutter_app/ws_app/ws_models/ws_article_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_common/ws_navigation_widgets.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_find/ws_controllers/ws_find_controller.dart';
 import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSFIndDetailView extends StatefulWidget {
   const WSFIndDetailView({
@@ -132,7 +132,7 @@ class _WSFIndDetailViewState extends State<WSFIndDetailView> {
                       try {
                         EasyLoading.show();
                         await WSAppService.instance.addFriend(widget.articleModel.user!.userId);
-                        WSToastUtil.show('Follow Successfully');
+                        WSToast.show('Follow Successfully');
                         setState(() {});
                       } finally {
                         EasyLoading.dismiss();
@@ -237,7 +237,7 @@ class _WSFIndDetailViewState extends State<WSFIndDetailView> {
               //   controller.detailDescription.value = txt;
               //   controller.detailDescription.refresh();
               // } else {
-              //   WSToastUtil.show('translate failed');
+              //   WSToast.show('translate failed');
               // }
             },
             child: Container(
@@ -276,7 +276,7 @@ class _WSFIndDetailViewState extends State<WSFIndDetailView> {
             behavior: HitTestBehavior.opaque,
             onTap: () {
               // if (WSAppService.instance.userInfo.value.userId == widget.articleModel.user?.userId) {
-              //   WSToastUtil.show('can not talk with yourself');
+              //   WSToast.show('can not talk with yourself');
               //   return;
               // }
               // Get.to(() => WSConversationView(

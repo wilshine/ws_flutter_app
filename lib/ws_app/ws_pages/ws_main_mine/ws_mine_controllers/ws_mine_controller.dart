@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_const.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_article_model.dart';
 import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSMineController extends GetxController {
   final currentIndex = 0.obs;
@@ -42,7 +42,7 @@ class WSMineController extends GetxController {
       EasyLoading.show();
     } catch (e, s) {
       WSLogger.error('updateUserInfo error: $e, $s');
-      WSToastUtil.show(e.toString());
+      WSToast.show(e.toString());
     } finally {
       EasyLoading.dismiss();
     }

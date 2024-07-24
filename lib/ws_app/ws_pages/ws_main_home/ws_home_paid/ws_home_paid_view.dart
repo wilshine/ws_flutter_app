@@ -231,7 +231,7 @@ class WSHomePaidViewState extends State<WSHomePaidView> {
                   //   };
                   //   Get.find<WSMineController>().addTicket(data);
                   //   Get.back();
-                  //   WSToastUtil.show('Buy successfully');
+                  //   WSToast.show('Buy successfully');
                   // }
                 },
               ),

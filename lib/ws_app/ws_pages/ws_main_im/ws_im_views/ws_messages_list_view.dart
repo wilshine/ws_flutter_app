@@ -9,7 +9,7 @@ import 'package:ws_flutter_app/ws_app/ws_models/ws_im_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_controllers/ws_im_controller.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/ws_conversation_views/ws_conversation_view.dart';
 import 'package:ws_flutter_app/ws_utils/ws_date_util.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSMessagesListView extends StatefulWidget {
   const WSMessagesListView({super.key});
@@ -82,7 +82,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
                 if (item.user != null) {
                   // WSIMManager.getInstance().removeConversation(item.user!.userId);
                 } else {
-                  WSToastUtil.show('unkown error');
+                  WSToast.show('unkown error');
                 }
               },
               backgroundColor: Colors.red,

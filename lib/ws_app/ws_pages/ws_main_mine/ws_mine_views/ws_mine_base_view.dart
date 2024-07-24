@@ -1,16 +1,12 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_login/ws_controllers/ws_login_controller.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/util/ws_media_util.dart';
-import 'package:ws_flutter_app/ws_app/ws_url.dart';
-import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
 import 'package:ws_flutter_app/ws_utils/ws_dialog_util.dart';
-import 'package:ws_flutter_app/ws_utils/ws_http/ws_http_client.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
 import 'package:get/get.dart';
 import 'package:ws_flutter_app/ws_utils/ws_tracer.dart';
 
@@ -118,7 +114,7 @@ class WSMineBaseState<T extends StatefulWidget> extends State<T> {
     try {
       EasyLoading.show();
       await Get.find<WSLoginController>().refreshAvatar(path);
-      WSToastUtil.show('update successfully');
+      WSToast.show('update successfully');
     } finally {
       EasyLoading.dismiss();
     }

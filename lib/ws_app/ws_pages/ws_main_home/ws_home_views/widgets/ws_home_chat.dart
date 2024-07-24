@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_user_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/ws_conversation_views/ws_conversation_view.dart';
 import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSHomeChat extends StatefulWidget {
   const WSHomeChat({
@@ -69,7 +69,7 @@ class _WSHomeChatState extends State<WSHomeChat> {
                   try {
                     EasyLoading.show();
                     await WSAppService.instance.addFriend(widget.user.userId);
-                    WSToastUtil.show('Follow Successfully');
+                    WSToast.show('Follow Successfully');
                     setState(() {});
                   } finally {
                     EasyLoading.dismiss();
@@ -194,7 +194,7 @@ class _WSHomeChatState extends State<WSHomeChat> {
   /// Tap chat event
   Future<void> onEventClickChat() async {
     if (WSAppService.instance.isBlockUser(widget.user.userId)) {
-      WSToastUtil.show('This user has been hacked by you');
+      WSToast.show('This user has been hacked by you');
       return;
     }
 

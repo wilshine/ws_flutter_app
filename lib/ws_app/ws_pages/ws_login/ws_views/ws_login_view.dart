@@ -11,7 +11,7 @@ import 'package:ws_flutter_app/ws_app/ws_pages/ws_login/ws_controllers/ws_login_
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main/ws_main_views/ws_main_view.dart';
 import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
 import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSLoginView extends StatefulWidget {
   const WSLoginView({super.key, this.extra});
@@ -308,7 +308,7 @@ class WSLoginViewState extends State<WSLoginView> {
     // if (isLoginSuccess) {
     //   goToMainPage();
     // } else {
-    //   WSToastUtil.show('Apple login failed, please try again later.');
+    //   WSToast.show('Apple login failed, please try again later.');
     // }
     return isLoginSuccess;
   }
@@ -327,7 +327,7 @@ class WSLoginViewState extends State<WSLoginView> {
     goToMainPage();
     if (isLoginSuccess) {
     } else {
-      WSToastUtil.show('Login failed, please try again later.');
+      WSToast.show('Login failed, please try again later.');
     }
     return isLoginSuccess;
   }

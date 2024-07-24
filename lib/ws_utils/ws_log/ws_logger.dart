@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 /// 日志工具
 class WSLogger {
@@ -63,7 +63,7 @@ class _WSLoggerViewState extends State<WSLoggerView> {
     list.add(GestureDetector(
       onTap: (){
         Clipboard.setData(ClipboardData(text: WSLogger.logs.join('\n')));
-        WSToastUtil.show('copy successfully');
+        WSToast.show('copy successfully');
       },
       child: Container(
         color: Colors.red,

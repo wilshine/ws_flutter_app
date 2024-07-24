@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_controllers/ws_im_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 class WSFollowedListView extends StatefulWidget {
   const WSFollowedListView({super.key});
@@ -99,7 +99,7 @@ class _WSFollowedListViewState extends State<WSFollowedListView> with AutomaticK
             isFollowed: item.isFollowed,
             onTap: () async {
               await WSAppService.instance.unFriend(item.user!.userId);
-              WSToastUtil.show('Unfollow Successfully');
+              WSToast.show('Unfollow Successfully');
             },
           ),
           const SizedBox(width: 20),
@@ -112,7 +112,7 @@ class _WSFollowedListViewState extends State<WSFollowedListView> with AutomaticK
           if (item.user != null) {
             // Get.to(() => WSConversationView(user: item.user!));
           } else {
-            WSToastUtil.show('unknow error');
+            WSToast.show('unknow error');
           }
         },
         child: child);

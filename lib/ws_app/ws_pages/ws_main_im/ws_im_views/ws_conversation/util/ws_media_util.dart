@@ -14,7 +14,7 @@ import 'package:just_audio/just_audio.dart' as just_audio;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ws_flutter_app/ws_utils/ws_audio_recorder.dart';
 import 'package:ws_flutter_app/ws_utils/ws_auido_player.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 ///媒体工具，负责申请权限，选照片，拍照，录音，播放语音
 class WSMediaUtil {
@@ -45,13 +45,13 @@ class WSMediaUtil {
   Future<String?> takePhoto() async {
     PermissionStatus status = await Permission.camera.request();
     if (status != PermissionStatus.granted) {
-      WSToastUtil.show("Grant permissions to the camera first");
+      WSToast.show("Grant permissions to the camera first");
       return null;
     }
     // for(var status in statuses.keys) {
     //   developer.log("$status：${statuses[status]}", name: pageName);
     //   if(statuses[status] != PermissionStatus.granted) {
-    //     WSToastUtil.show("Grant permissions to the camera first");
+    //     WSToast.show("Grant permissions to the camera first");
     //     return null;
     //   }
     // }
@@ -76,7 +76,7 @@ class WSMediaUtil {
       status = await Permission.photos.request();
     }
     if (status != PermissionStatus.granted) {
-      WSToastUtil.show("Grant permissions to the photos first");
+      WSToast.show("Grant permissions to the photos first");
       return null;
     }
 
@@ -92,7 +92,7 @@ class WSMediaUtil {
   Future<List<File>> pickFiles() async {
     PermissionStatus status = await Permission.storage.request();
     if (status != PermissionStatus.granted) {
-      WSToastUtil.show("Grant permissions to the storage first");
+      WSToast.show("Grant permissions to the storage first");
       return [];
     }
 

@@ -6,7 +6,7 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ws_flutter_app/ws_utils/ws_file_util.dart';
 import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sound_platform_interface/flutter_sound_recorder_platform_interface.dart';
 
@@ -45,7 +45,7 @@ class WSAudioRecorder {
   Future<void> openTheRecorder() async {
     var status = await Permission.microphone.request();
     if (status != PermissionStatus.granted) {
-      WSToastUtil.show('Microphone permission not granted');
+      WSToast.show('Microphone permission not granted');
       return;
     }
     await _recorder?.openRecorder();
@@ -89,7 +89,7 @@ class WSAudioRecorder {
     WSLogger.debug("debug startRecord");
     var status = await Permission.microphone.request();
     if (status != PermissionStatus.granted) {
-      WSToastUtil.show("Microphone permission not granted");
+      WSToast.show("Microphone permission not granted");
     } else {
       Directory tempDir = await getTemporaryDirectory();
       _mPath = "${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.aac";
@@ -107,16 +107,16 @@ class WSAudioRecorder {
   void stopRecord(Function(String path, int duration) finished) async {
     String? path = await _recorder?.stopRecorder();
     if (path == null) {
-      WSToastUtil.show('record failed');
+      WSToast.show('record failed');
       WSLogger.error('record failed  ${_recorder?.recorderState}');
       return;
     }
     if(!await WSFileUtil.isFileExists(path)) {
-      WSToastUtil.show('record failed');
+      WSToast.show('record failed');
       return;
     }
     if(duration != null && duration!.inSeconds < 1) {
-      WSToastUtil.show('recording can\'t be less than 1 second');
+      WSToast.show('recording can\'t be less than 1 second');
       return;
     }
     WSLogger.debug("Stop recording: path = $path，duration = ${duration?.inSeconds}");

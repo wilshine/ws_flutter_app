@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 import '../ws_controllers/ws_find_controller.dart';
 
@@ -131,15 +131,15 @@ class _WSFindPostViewState extends State<WSFindPostView> {
             behavior: HitTestBehavior.opaque,
             onTap: () {
               if(titleController.text.isEmpty) {
-                WSToastUtil.show('Please input title.');
+                WSToast.show('Please input title.');
                 return;
               }
               if(contentController.text.isEmpty) {
-                WSToastUtil.show('Please input content.');
+                WSToast.show('Please input content.');
                 return;
               }
               if(Get.find<WSFindController>().postImageList.isEmpty) {
-                WSToastUtil.show('Please add image.');
+                WSToast.show('Please add image.');
                 return;
               }
               Get.find<WSFindController>().postArticle(

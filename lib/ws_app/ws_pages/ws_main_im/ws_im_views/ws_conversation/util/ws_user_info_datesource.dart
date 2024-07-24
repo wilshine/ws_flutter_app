@@ -4,7 +4,7 @@ import 'package:ws_flutter_app/ws_app/ws_models/ws_user_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/util/ws_db_manager.dart';
 import 'package:ws_flutter_app/ws_app/ws_url.dart';
 import 'package:ws_flutter_app/ws_utils/ws_http/ws_http_client.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 
 class BaseInfo {
@@ -61,7 +61,7 @@ class UserInfoDataSource {
         return info;
       }
     }
-    WSToastUtil.show('errorrr');
+    WSToast.show('errorrr');
     throw 'get error $userId';
   }
 

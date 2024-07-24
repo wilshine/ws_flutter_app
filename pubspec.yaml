@@ -17,6 +17,8 @@ dependencies:
   webview_flutter:
   common_tools:
     path: ../common_tools
+  common_ui:
+    path: ../common_ui
 
   card_swiper: 3.0.1 # 轮播图
   flutter_easyloading: #

@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_user_model.dart';
-import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
+import 'package:common_ui/common_ui.dart';
 
 import '../../util/ws_style.dart';
 import '../../util/ws_user_info_datesource.dart' as example;
@@ -262,7 +262,7 @@ class _WSBottomInputBarState extends State<WSBottomInputBar> {
               onTap: () async {
                 PermissionStatus status = await Permission.microphone.request();
                 if (status != PermissionStatus.granted) {
-                  WSToastUtil.show("Grant permissions to the microphone first");
+                  WSToast.show("Grant permissions to the microphone first");
                   return;
                 }
                 switchVoice();
