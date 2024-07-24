@@ -62,20 +62,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
             // await WSIMManager.getInstance().refreshMessageList();
             easyRefreshController.finishRefresh();
           },
-          child: Obx(() {
-            // if(WSIMManager.getInstance().messageList.isEmpty) {
-            //   return WSAppUtil.buildEmptyWidget();
-            // }
-            return Container();
-            // return ListView.builder(
-            //   padding: EdgeInsets.zero,
-            //   itemCount: WSIMManager.getInstance().messageList.length,
-            //   itemBuilder: (BuildContext context, int index) {
-            //     WSMessageItem item = WSIMManager.getInstance().messageList.value.elementAt(index);
-            //     return buildItem(item);
-            //   },
-            // );
-          })),
+          child: Container(),),
     );
   }
 

@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_const.dart';
+import 'package:ws_flutter_app/ws_app/ws_app_route.dart';
 import 'package:ws_flutter_app/ws_app/ws_url.dart';
 import 'package:ws_flutter_app/ws_utils/ws_http/ws_http_client.dart';
 import 'package:ws_flutter_app/ws_utils/ws_shared_preferences_util.dart';
@@ -63,6 +66,7 @@ class WSAppService extends GetxService {
   void logout() async {
     try {
       EasyLoading.show();
+      router.pushReplacement('/login');
     } catch (e, s) {
       // WSLogger.error('logout  $e  $s');
     } finally {
@@ -145,7 +149,7 @@ class WSAppService extends GetxService {
     var param = {
       'followUserId': userId,
     };
-    var res = await WSHttpCore.getInstance().postByOptionsJson(WSUrls.addFriend, data: param);
+    var res = await WSHttpCore().postByOptionsJson(WSUrls.addFriend, data: param);
     if (res != null) {
       await refreshFollowedList();
     }

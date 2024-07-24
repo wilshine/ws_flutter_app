@@ -16,7 +16,6 @@ import 'package:ws_flutter_app/ws_utils/ws_audio_recorder.dart';
 import 'package:ws_flutter_app/ws_utils/ws_auido_player.dart';
 import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
 
-
 ///媒体工具，负责申请权限，选照片，拍照，录音，播放语音
 class WSMediaUtil {
   String pageName = "example.MediaUtil";
@@ -44,8 +43,8 @@ class WSMediaUtil {
 
   //拍照，成功则返回照片的本地路径，注：Android 必须要加 file:// 头
   Future<String?> takePhoto() async {
-    PermissionStatus status  = await Permission.camera.request();
-    if(status != PermissionStatus.granted) {
+    PermissionStatus status = await Permission.camera.request();
+    if (status != PermissionStatus.granted) {
       WSToastUtil.show("Grant permissions to the camera first");
       return null;
     }
@@ -56,7 +55,6 @@ class WSMediaUtil {
     //     return null;
     //   }
     // }
-
 
     XFile? imgfile = await ImagePicker().pickImage(source: ImageSource.camera);
     if (imgfile == null) {
@@ -71,8 +69,13 @@ class WSMediaUtil {
 
   //从相册选照片，成功则返回照片的本地路径，注：Android 必须要加 file:// 头
   Future<String?> pickImage() async {
-    PermissionStatus status = await Permission.photos.request();
-    if(status != PermissionStatus.granted) {
+    PermissionStatus? status;
+    if (Platform.isAndroid) {
+      status = await Permission.accessMediaLocation.request();
+    } else {
+      status = await Permission.photos.request();
+    }
+    if (status != PermissionStatus.granted) {
       WSToastUtil.show("Grant permissions to the photos first");
       return null;
     }
@@ -82,16 +85,13 @@ class WSMediaUtil {
       return null;
     }
     String imgPath = imgfile.path;
-    if (TargetPlatform.android == defaultTargetPlatform) {
-      imgPath = "file://${imgfile.path}";
-    }
     return imgPath;
   }
 
   //选择本地文件，成功返回文件信息
   Future<List<File>> pickFiles() async {
     PermissionStatus status = await Permission.storage.request();
-    if(status != PermissionStatus.granted) {
+    if (status != PermissionStatus.granted) {
       WSToastUtil.show("Grant permissions to the storage first");
       return [];
     }

@@ -11,12 +11,12 @@ class WSUrls {
   }
 
   // 埋点
-  static const String tracerBaseUrl = 'https://log.heeru.xyz/';
+  static const String tracerBaseUrl = '';
 
   /// 隐私协议
-  static const String privacyPolicy = 'http://h5.heeru.xyz/privacyPolicy.html';
+  static const String privacyPolicy = 'https://www.baidu.com';
 
-  static const String termConditions = 'http://h5.heeru.xyz/termConditions.html';
+  static const String termConditions = 'https://www.baidu.com';
 
   /// 获取app配置
   static const String getAppConfig = 'config/getAppConfig';

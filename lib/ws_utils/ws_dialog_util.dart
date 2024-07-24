@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class WSDialogUtil {
   /// 设置弹窗具体位置
@@ -33,7 +34,7 @@ class WSDialogUtil {
           actions: <Widget>[
             CupertinoDialogAction(
               onPressed: () {
-                Get.back();
+                Navigator.pop(Get.context!);
                 onConfirm.call();
               },
               child: const Text("Confirm"),
@@ -41,7 +42,8 @@ class WSDialogUtil {
             CupertinoDialogAction(
               child: const Text("Cancel"),
               onPressed: () {
-                Get.back();
+                Navigator.pop(Get.context!);
+                // Navigator.of(context, rootNavigator: true).pop();
               },
             ),
           ],

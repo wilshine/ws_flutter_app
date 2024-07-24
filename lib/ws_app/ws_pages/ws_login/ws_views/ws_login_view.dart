@@ -1,3 +1,4 @@
+import 'package:common_tools/common_tools.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,9 @@ import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
 import 'package:ws_flutter_app/ws_utils/ws_toast_util.dart';
 
 class WSLoginView extends StatefulWidget {
-  const WSLoginView({super.key});
+  const WSLoginView({super.key, this.extra});
+
+  final Object? extra;
 
   @override
   State<WSLoginView> createState() => WSLoginViewState();
@@ -25,20 +28,14 @@ class WSLoginViewState extends State<WSLoginView> {
   @override
   void initState() {
     super.initState();
-    Get.put(WSLoginController());
 
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) => initPlugin());
-
-    /// check auto login
     () async {
       try {
         bool isSupported = await WSAppService.instance.isSupportAutoLogin();
         if (isSupported) {
           EasyLoading.show();
-          // WSLogManger().putLog(WSLogType.clickEvent, {'page': WSLogPages.pageQuickLogin});
           bool isLoginSuccess = await WSAppService.instance.loginAuto();
           if (isLoginSuccess) {
-            // WSLogManger().putLog(WSLogType.clickEvent, {'page': WSLogPages.pageLoginSuccess});
             goToMainPage();
           }
         }
@@ -52,77 +49,38 @@ class WSLoginViewState extends State<WSLoginView> {
 
   @override
   void dispose() {
-    Get.delete<WSLoginController>();
     super.dispose();
-  }
-
-  Future<void> initPlugin() async {
-    // if (WSSharedPreferencesUtil().prefs.get(WSAppConst.keyAccessToken) != null) {
-    //   return;
-    // }
-    //
-    // final TrackingStatus status = await AppTrackingTransparency.trackingAuthorizationStatus;
-    // if (status == TrackingStatus.notDetermined) {
-    //   await AppTrackingTransparency.requestTrackingAuthorization();
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: GestureDetector(
-        onLongPress: (){
+        onLongPress: () {
           // test();
         },
         child: Container(
           alignment: Alignment.bottomCenter,
           decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/login_bg.png'), fit: BoxFit.fill),
+            color: Colors.black,
+            image: DecorationImage(image: AssetImage('assets/images/login_bg.jpeg'), fit: BoxFit.fitWidth),
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                getSignWithAppleButton(),
                 const SizedBox(height: 32),
                 getFastLoginButton(),
                 const SizedBox(height: 46),
                 getPrivacyWidget(),
                 const SizedBox(height: 54),
-
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget getSignWithAppleButton() {
-    return CupertinoButton(
-      padding: EdgeInsets.zero,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 15),
-        decoration: const BoxDecoration(color: Color(0xFF4C4B4B), borderRadius: BorderRadius.all(Radius.circular(52))),
-        child: Stack(
-          children: [
-            const SizedBox(width: 24, height: 24, child: Image(image: AssetImage('assets/images/apple_logo.png'))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Sign in with Apple',
-                  style: TextStyle(color: Color(0xFFE6FF4E)),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      onPressed: () async {
-        onEventLoginWithApple();
-      },
     );
   }
 
@@ -132,14 +90,13 @@ class WSLoginViewState extends State<WSLoginView> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 15),
         decoration: const BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.all(Radius.circular(52))),
-        child: Stack(
+        child: const Stack(
           children: [
-            const SizedBox(width: 24, height: 24, child: Image(image: AssetImage('assets/images/login_light.png'))),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
-                  'Fast Login',
+                  '快速登录',
                   style: TextStyle(color: Color(0xFF202020)),
                 ),
               ],
@@ -376,7 +333,6 @@ class WSLoginViewState extends State<WSLoginView> {
   }
 
   void goToMainPage() {
-    // Get.offAll(() => WSMainView());
     context.push('/main');
   }
 }

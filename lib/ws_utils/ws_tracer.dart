@@ -196,7 +196,7 @@ class WSLogManger {
   /// 执行上传
   Future<void> _doUpload(List<Map<String, dynamic>> sendList, bool isContinue) async {
     String url = '${WSUrls.tracerBaseUrl}log/live-chat';
-    WSHttpCore.getInstance().post(url, data: sendList).then((value) {
+    WSHttpCore().post(url, data: sendList).then((value) {
       if (isContinue) {
         sendDelayed();
       }

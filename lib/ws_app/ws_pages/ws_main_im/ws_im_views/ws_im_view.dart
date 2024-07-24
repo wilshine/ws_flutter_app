@@ -31,8 +31,7 @@ class _WSIMViewState extends State<WSIMView> with SingleTickerProviderStateMixin
     _tabController = TabController(length: tabs.length, vsync: this);
     _tabController.addListener(() {
       WSLogger.debug('=====_tabController.index=${_tabController.index}');
-      setState(() {
-      });
+      setState(() {});
     });
   }
 
@@ -48,7 +47,9 @@ class _WSIMViewState extends State<WSIMView> with SingleTickerProviderStateMixin
     return Column(
       children: [
         SizedBox(height: context.mediaQueryPadding.top.h),
-        SizedBox(height: 2.h,),
+        SizedBox(
+          height: 2.h,
+        ),
         WSSwitchBar(
           tabs: tabs,
           onEventTapped: (i, value) {

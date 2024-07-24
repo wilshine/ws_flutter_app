@@ -2,12 +2,9 @@ import 'dart:async';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_const.dart';
-import 'package:ws_flutter_app/ws_app/ws_pages/ws_login/ws_views/ws_login_view.dart';
+import 'package:ws_flutter_app/ws_app/ws_app_route.dart';
 import 'package:ws_flutter_app/ws_utils/ws_shared_preferences_util.dart';
 
 /// 引导页
@@ -20,23 +17,21 @@ class WSSplashView extends StatefulWidget {
 
 class WSSplashViewState extends State<WSSplashView> {
   SwiperController? swiperController;
-  int swiperCount = 3;
+  int swiperCount = 2;
   int swiperIndex = 0;
-
-  // Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    WSSharedPreferencesUtil().prefs.setBool(WSAppConst.keyDoneSplash, true);
-    swiperController ??= SwiperController();
 
-    /// 第一次给3秒，减去启动时间
-    // _timer?.cancel();
-    // _timer = null;
-    // _timer = Timer(const Duration(seconds: 3), () {
-    //   goToNextPage();
-    // });
+    () async {
+      if ((await WSSharedPreferencesUtil().prefs.getBool(WSAppConst.keyDoneSplash)) ?? false) {
+        goToLoginPage();
+        return;
+      }
+      WSSharedPreferencesUtil().prefs.setBool(WSAppConst.keyDoneSplash, true);
+    }();
+    swiperController ??= SwiperController();
   }
 
   @override
@@ -156,10 +151,6 @@ class WSSplashViewState extends State<WSSplashView> {
   }
 
   Future<void> goToLoginPage() async {
-    context.push('/login');
-
-    /// 释放定时器
-    // _timer?.cancel();
-    // _timer = null;
+    router.push('/login');
   }
 }

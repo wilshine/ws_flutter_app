@@ -14,6 +14,7 @@ dependencies:
   flutter_screenutil: 5.9.3 # 屏幕适配
   go_router: # 路由管理
   get: 4.6.6 # 状态管理
+  webview_flutter:
   common_tools:
     path: ../common_tools
 
@@ -49,6 +50,5 @@ flutter:
   assets:
     - assets/images/
     - assets/images/home/
-    - assets/images/find/
     - assets/svg/
     - assets/webp/

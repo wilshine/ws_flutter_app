@@ -10,7 +10,10 @@ import 'ws_utils/ws_shared_preferences_util.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    DeviceUtil.immersionSetting();
+    // DeviceUtil.immersionSetting();
+    DeviceUtil.lightStatusTheme();
+    await XPToolManager.instance.init();
+    await Logger.init(logLevel: Logger.levelDebug);
     await DeviceUtil().init();
     await WSSharedPreferencesUtil().init();
     runApp(const WSApp());

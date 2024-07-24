@@ -53,7 +53,7 @@ class UserInfoDataSource {
       var param = {
         'userId': userId,
       };
-      var res = await WSHttpCore.getInstance().get(WSUrls.getUserInfo, params: param);
+      var res = await WSHttpCore().get(WSUrls.getUserInfo, params: param);
       if(res != null) {
 
         info = WSUserModel.fromJson(res['data']);
