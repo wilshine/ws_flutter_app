@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:ui' as ui;
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ws_flutter_app/ws_app/ws_dialog/ws_core_widget.dart';
 
@@ -129,7 +130,7 @@ class WSDialogRiser {
 
   set _setIsBuilt(v) => (_isBuilt = v) ? builtCompleter.complete(v) : null;
 
-  /// Riser is between the state's [init] phase and [dispose] phase or not
+  /// Riser is between the state's [init] phase and dispose phase or not
   bool _isShowing = false;
 
   bool get isShowing => _isShowing;

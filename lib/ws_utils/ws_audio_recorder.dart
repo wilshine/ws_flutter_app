@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:audio_session/audio_session.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:flutter_sound_platform_interface/flutter_sound_recorder_platform_interface.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ws_flutter_app/ws_utils/ws_file_util.dart';
 import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
-import 'package:common_ui/common_ui.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter_sound_platform_interface/flutter_sound_recorder_platform_interface.dart';
 
 class WSAudioRecorder {
   factory WSAudioRecorder() => _getInstance();

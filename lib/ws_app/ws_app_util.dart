@@ -18,10 +18,8 @@ class WSAppUtil {
   }
 
   static Widget buildEmptyWidget() {
-    return Container(
-      child: Center(
-        child: Image.asset('assets/webp/mine_block_list_empty.webp', width: 180,),
-      ),
+    return Center(
+      child: Image.asset('assets/webp/mine_block_list_empty.webp', width: 180,),
     );
   }
 
