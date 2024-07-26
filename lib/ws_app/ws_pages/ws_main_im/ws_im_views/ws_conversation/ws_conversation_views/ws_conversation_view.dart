@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'dart:math' as math;
 
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ws_flutter_app/ws_app/ws_app_route.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_user_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/util/ws_style.dart';
 import 'package:ws_flutter_app/ws_utils/ws_log/ws_logger.dart';
@@ -77,8 +80,7 @@ class WSConversationViewState extends State<WSConversationView>
     super.dispose();
   }
 
-  void setInfo() {
-  }
+  void setInfo() {}
 
   void _addIMHandler() {
     //
@@ -149,16 +151,13 @@ class WSConversationViewState extends State<WSConversationView>
   Future<void> fetchMessageAfter() async {}
 
   /// 获取历史消息
-  void onGetHistoryMessages() async {
-  }
+  void onGetHistoryMessages() async {}
 
   String pageName = "example.ConversationPage";
 
   // String? targetId;
 
-  void _initExtentionWidgets() {
-  }
-
+  void _initExtentionWidgets() {}
 
   @override
   Widget build(BuildContext context) {
@@ -175,13 +174,12 @@ class WSConversationViewState extends State<WSConversationView>
               color: Colors.black,
             ),
             onPressed: () {
-              Get.back();
+              router.pop();
             },
           ),
           actions: [
             IconButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               icon: const Icon(
                 Icons.more_horiz,
                 color: Colors.black,
@@ -189,31 +187,166 @@ class WSConversationViewState extends State<WSConversationView>
             ),
           ],
         ),
-        body: Container(
-          child: Stack(
-            children: [
-              SafeArea(
-                child: Column(
-                  children: <Widget>[
-                    Flexible(
-                      child: Column(
-                        children: <Widget>[Flexible(child: messageContentList)],
-                      ),
-                    ),
-                    Container(
-                      child: _buildBottomInputBar(),
-                    ),
-                    _getExtentionWidget(),
-                  ],
+        body: buildBody(),
+        // Container(
+        //   child: Stack(
+        //     children: [
+        //       SafeArea(
+        //         child: Column(
+        //           children: <Widget>[
+        //             Flexible(
+        //               child: Column(
+        //                 children: <Widget>[Flexible(child: messageContentList)],
+        //               ),
+        //             ),
+        //             Container(
+        //               child: _buildBottomInputBar(),
+        //             ),
+        //             _getExtentionWidget(),
+        //           ],
+        //         ),
+        //       ),
+        //       // Obx(
+        //       //   () => _buildExtraCenterWidget(),
+        //       // ),
+        //     ],
+        //   ),
+        // ),
+      ),
+    );
+  }
+
+  Widget buildBody() {
+    return Column(
+      children: [
+        Expanded(
+          child: WsRefreshListWidget(
+            itemBuilder: (context, index) {
+              return _buildMessageItem(index);
+            },
+            onLoad: (index) {
+              _messages.clear();
+              _messages.addAll([
+                MessageEntity(
+                  own: true,
+                  msg: "It's good!",
                 ),
-              ),
-              Obx(
-                () => _buildExtraCenterWidget(),
-              ),
-            ],
+                MessageEntity(
+                  own: false,
+                  img: 'assets/images/logo.png',
+                  msg: "EasyRefresh",
+                ),
+              ]);
+
+              return Future.value(ListResult(list: _messages, hasMore: false));
+            },
+            onRefresh: (index) {},
           ),
         ),
-      ),
+      ],
+    );
+  }
+
+  final List<MessageEntity> _messages = [
+    MessageEntity(
+      own: true,
+      msg: "It's good!",
+    ),
+    MessageEntity(
+      own: false,
+      img: 'assets/images/logo.png',
+      msg: "EasyRefresh",
+    ),
+  ];
+
+  Widget _buildMessageItem(int index) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final themeData = Theme.of(context);
+        final message = _messages[index];
+        final maxWidth = math.min(constraints.maxWidth - 124, 400.0);
+        Widget? imgWidget;
+        Widget? msgWidget;
+        bool continuously = index != 0 && _messages[index - 1].own == message.own;
+        if (message.img != null) {
+          imgWidget = LayoutBuilder(
+            builder: (context, c) {
+              return Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: themeData.colorScheme.tertiaryContainer,
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                ),
+                constraints: BoxConstraints(
+                  maxWidth: maxWidth,
+                ),
+                child: Image.asset(message.img!),
+              );
+            },
+          );
+        }
+        if (message.msg != null) {
+          msgWidget = Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: message.own ? themeData.colorScheme.primaryContainer : themeData.colorScheme.tertiaryContainer,
+              borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(24),
+                topRight: const Radius.circular(24),
+                bottomLeft: Radius.circular(message.own || continuously ? 24 : 8),
+                bottomRight: Radius.circular(message.own && !continuously ? 8 : 24),
+              ),
+            ),
+            constraints: BoxConstraints(
+              maxWidth: maxWidth,
+            ),
+            child: Text(message.msg!),
+          );
+        }
+        Widget contentWidget = Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (imgWidget != null) imgWidget,
+            if (imgWidget != null && msgWidget != null)
+              const SizedBox(
+                height: 8,
+              ),
+            if (msgWidget != null) msgWidget,
+          ],
+        );
+        return Container(
+          margin: EdgeInsets.only(top: 8, bottom: continuously ? 0 : 8, left: 16, right: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              if (message.own) const Spacer(),
+              if (!message.own)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ClipOval(
+                    child: continuously
+                        ? const SizedBox(
+                            width: 36,
+                          )
+                        : InkWell(
+                            onTap: () {
+                              // Get.to(() => const UserProfilePage());
+                            },
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              height: 36,
+                              width: 36,
+                            ),
+                          ),
+                  ),
+                ),
+              contentWidget,
+              if (!message.own) const Spacer(),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -221,11 +354,11 @@ class WSConversationViewState extends State<WSConversationView>
     if (currentInputStatus == InputBarStatus.Extention) {
       return Container(
           child: GridView.count(
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 4,
-            padding: const EdgeInsets.all(10),
-            children: extWidgetList,
-          ));
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 4,
+        padding: const EdgeInsets.all(10),
+        children: extWidgetList,
+      ));
     } else if (currentInputStatus == InputBarStatus.Emoji) {
       return Container(height: WSRCLayout.ExtentionLayoutWidth, child: _buildEmojiList());
     } else {
@@ -341,8 +474,7 @@ class WSConversationViewState extends State<WSConversationView>
     _showExtraCenterWidget(ConversationStatus.Normal);
   }
 
-  _buildExtraCenterWidget() {
-  }
+  _buildExtraCenterWidget() {}
 
   @override
   void didLongPressMessageItem(dynamic message, Offset tapPos) {
@@ -368,8 +500,7 @@ class WSConversationViewState extends State<WSConversationView>
     });
   }
 
-  void _recallMessage(dynamic message) async {
-  }
+  void _recallMessage(dynamic message) async {}
 
   void _insertOrReplaceMessage(dynamic message) {
     int index = -1;
@@ -390,12 +521,10 @@ class WSConversationViewState extends State<WSConversationView>
   bool isFirstGetHistoryMessages = true;
 
   /// 已读回执
-  void _sendReadReceipt() async {
-  }
+  void _sendReadReceipt() async {}
 
   @override
-  void didLongPressUserPortrait(String userId, Offset tapPos) {
-  }
+  void didLongPressUserPortrait(String userId, Offset tapPos) {}
 
   /// 请求已读回执
   @override
@@ -436,8 +565,7 @@ class WSConversationViewState extends State<WSConversationView>
   }
 
   @override
-  void didTapReSendMessage(dynamic message) {
-  }
+  void didTapReSendMessage(dynamic message) {}
 
   @override
   void didTapUserPortrait(String userId) {
@@ -477,4 +605,16 @@ class WSConversationViewState extends State<WSConversationView>
 enum ConversationStatus {
   Normal, //正常
   VoiceRecorder, //语音输入，页面中间回弹出录音的 gif
+}
+
+class MessageEntity {
+  bool own;
+  String? msg;
+  String? img;
+
+  MessageEntity({
+    required this.own,
+    required this.msg,
+    this.img,
+  });
 }

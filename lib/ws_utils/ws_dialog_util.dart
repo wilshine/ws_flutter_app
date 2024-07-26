@@ -37,10 +37,10 @@ class WSDialogUtil {
                 Navigator.pop(Get.context!);
                 onConfirm.call();
               },
-              child: const Text("Confirm"),
+              child: const Text("确认"),
             ),
             CupertinoDialogAction(
-              child: const Text("Cancel"),
+              child: const Text("取消"),
               onPressed: () {
                 Navigator.pop(Get.context!);
                 // Navigator.of(context, rootNavigator: true).pop();

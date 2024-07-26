@@ -1,3 +1,4 @@
+import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,8 +16,6 @@ class WSMineSettingView extends StatefulWidget {
 }
 
 class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
-
-
   @override
   void dispose() {
     super.dispose();
@@ -28,9 +27,9 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
       body: Column(
         children: [
           SizedBox(height: context.mediaQueryPadding.top.h),
-          buildTopBar(title: 'Setting'),
+          buildTopBar(title: '设置'),
           SizedBox(height: 32.h),
-          buildAutoTranslateItem(),
+          buildWatermarkItem(),
           SizedBox(height: 20.h),
           buildDeleteItem(),
           SizedBox(height: 20.h),
@@ -40,7 +39,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
     );
   }
 
-  Widget buildAutoTranslateItem() {
+  Widget buildWatermarkItem() {
     return Container(
       height: 44.h,
       margin: EdgeInsets.only(left: 32.w, right: 32.w),
@@ -55,7 +54,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
             child: Container(
               margin: EdgeInsets.only(left: 20.w),
               child: const Text(
-                'Auto Translate',
+                '展示水印',
                 style: TextStyle(
                   color: Color(0xFF404040),
                   fontSize: 16,
@@ -63,15 +62,22 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
               ),
             ),
           ),
-          Switch(
-            activeTrackColor: const Color(0xFFFFE34E),
-            inactiveThumbColor: Colors.white,
-            activeColor: Colors.white,
-            value: WSSharedPreferencesUtil().prefs.getBool(WSAppConst.keyAutoTranslate) ?? false,
-            onChanged: (value) {
-              WSSharedPreferencesUtil().prefs.setBool(WSAppConst.keyAutoTranslate, value);
-              setState(() {});
-            },
+          StatefulBuilder(
+            builder: (context, setState) => Switch(
+              activeTrackColor: const Color(0xFFFFE34E),
+              inactiveThumbColor: Colors.white,
+              activeColor: Colors.white,
+              value: WSSharedPreferencesUtil().prefs.getBool(WSAppConst.keyAutoTranslate) ?? false,
+              onChanged: (value) {
+                WSSharedPreferencesUtil().prefs.setBool(WSAppConst.keyAutoTranslate, value);
+                setState(() {});
+                if (value) {
+                  WsWatermark.addWatermark(context, '我是水印');
+                } else {
+                  WsWatermark.removeWatermark();
+                }
+              },
+            ),
           ),
           SizedBox(width: 32.w),
         ],
@@ -83,7 +89,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        WSDialogUtil.confirm('Confirm delete account?', () async {
+        WSDialogUtil.confirm('确认删除账号?', () async {
           WSAppService.instance.deleteAccount();
         });
       },
@@ -100,7 +106,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
                 child: Container(
                   margin: EdgeInsets.only(left: 20.w),
                   child: const Text(
-                    'Delete Account',
+                    '删除账号',
                     style: TextStyle(
                       color: Color(0xFF404040),
                       fontSize: 16,
@@ -119,7 +125,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        WSDialogUtil.confirm('Confirm Logout?', () async {
+        WSDialogUtil.confirm('确认退出登录?', () async {
           WSAppService.instance.logout();
         });
       },
@@ -136,7 +142,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
               child: Container(
                 margin: EdgeInsets.only(left: 20.w),
                 child: const Text(
-                  'Logout',
+                  '退出登录',
                   style: TextStyle(
                     color: Color(0xFF404040),
                     fontSize: 16,

@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rongcloud_im_wrapper_plugin/rongcloud_im_wrapper_plugin.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_util.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_im_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_controllers/ws_im_controller.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_views/ws_conversation/ws_conversation_views/ws_conversation_view.dart';
 import 'package:ws_flutter_app/ws_utils/ws_date_util.dart';
 import 'package:common_ui/common_ui.dart';
+
+import '../../../ws_models/ws_user_model.dart';
 
 class WSMessagesListView extends StatefulWidget {
   const WSMessagesListView({super.key});
@@ -56,13 +60,24 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: EasyRefresh(
-          controller: easyRefreshController,
-          onRefresh: () async {
-            // await WSIMManager.getInstance().refreshMessageList();
-            easyRefreshController.finishRefresh();
-          },
-          child: Container(),),
+      child: WsRefreshListWidget(
+        refreshOnStart: true,
+        itemBuilder: (data, index) {
+          return buildItem(WSMessageItem(conversation: RCIMIWConversation.fromJson({
+            'unreadCount': index,
+            'lastMessage': {
+              'nickname': '张三',
+              'messageType': 1,
+              'receivedTime': DateTime.now().millisecondsSinceEpoch,
+            },
+          }), user: WSUserModel(
+              nickname: '李四'
+          )));
+        },
+        onRefresh: (page) {
+          return Future.value(ListResult(list: List.generate(10, (index) => index), hasMore: page < 3));
+        },
+      ),
     );
   }
 
@@ -70,7 +85,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        Get.to(() => WSConversationView(user: item.user!));
+        context.push('/main/conversation', extra: item.user!.toJson());
       },
       child: Slidable(
         endActionPane: ActionPane(
@@ -79,11 +94,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
           children: [
             SlidableAction(
               onPressed: (context) {
-                if (item.user != null) {
-                  // WSIMManager.getInstance().removeConversation(item.user!.userId);
-                } else {
-                  WSToast.show('unkown error');
-                }
+                WSToast.show('ok~~~~');
               },
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
@@ -106,7 +117,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
                     height: 44,
                     margin: const EdgeInsets.only(left: 18, right: 10),
                     child: CircleAvatar(
-                      backgroundImage: item.user?.getUrl != null ? NetworkImage(item.user?.getUrl ?? '') : null,
+                      // backgroundImage: item.user?.getUrl != null ? NetworkImage(item.user?.getUrl ?? '') : null,
                     ),
                   ),
                   Positioned(
@@ -235,7 +246,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
     // } else if (message is RCIMIWFileMessage) {
     //   return '[FileMessage]';
     // }
-    return '';
+    return '[Message]';
   }
 
   @override

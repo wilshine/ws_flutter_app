@@ -43,8 +43,9 @@ class _WSFollowedListViewState extends State<WSFollowedListView> with AutomaticK
         await WSAppService.instance.refreshFollowedList();
         easyRefreshController.finishRefresh();
       },
-      child: Obx(
-        () {
+      child: Container(),
+      // Obx(
+      //   () {
           // if (WSAppService.instance.followedList.isEmpty) {
           //   return WSAppUtil.buildEmptyWidget();
           // }
@@ -56,9 +57,9 @@ class _WSFollowedListViewState extends State<WSFollowedListView> with AutomaticK
           //     return buildItem(item);
           //   },
           // );
-          return Container();
-        },
-      ),
+        //   return Container();
+        // },
+      // ),
     );
   }
 

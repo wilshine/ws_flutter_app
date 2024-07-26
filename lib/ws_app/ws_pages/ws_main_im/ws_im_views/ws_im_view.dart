@@ -18,7 +18,7 @@ class WSIMView extends WSBaseStatefulWidget {
 
 class _WSIMViewState extends State<WSIMView> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List tabs = ["Messages", "Followed"];
+  List tabs = ["消息", "关注"];
 
   late WSIMController imController;
 

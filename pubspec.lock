@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.21"
+  basics:
+    dependency: transitive
+    description:
+      name: basics
+      sha256: bc2385021fe7cb78785fbd12cdf374ab2fe5727879b332477b403cfb0ffc9cab
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -303,6 +311,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  device_info:
+    dependency: transitive
+    description:
+      name: device_info
+      sha256: f4a8156cb7b7480d969cb734907d18b333c8f0bc0b1ad0b342cdcecf30d62c48
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
+  device_info_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_platform_interface
+      sha256: b148e0bf9640145d09a4f8dea96614076f889e7f7f8b5ecab1c7e5c2dbc73c1b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   device_info_plus:
     dependency: transitive
     description:
@@ -352,7 +376,7 @@ packages:
     source: hosted
     version: "4.1.0"
   dio:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: dio
       sha256: e17f6b3097b8c51b72c74c9f071a605c47bcc8893839bd66732457a5ebe73714
@@ -463,6 +487,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3+2"
+  file_utils:
+    dependency: transitive
+    description:
+      name: file_utils
+      sha256: d1e64389a22649095c8405c9e177272caf05139255931c9ff30d53b5c9bcaa34
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   fixnum:
     dependency: transitive
     description:
@@ -508,6 +540,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -577,6 +614,55 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_ume:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2"
+      relative: true
+    source: path
+    version: "1.1.2"
+  flutter_ume_kit_console:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_console"
+      relative: true
+    source: path
+    version: "1.0.0"
+  flutter_ume_kit_device:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_device"
+      relative: true
+    source: path
+    version: "1.0.0"
+  flutter_ume_kit_dio:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_dio"
+      relative: true
+    source: path
+    version: "1.0.0"
+  flutter_ume_kit_perf:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_perf"
+      relative: true
+    source: path
+    version: "1.0.0"
+  flutter_ume_kit_show_code:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_show_code"
+      relative: true
+    source: path
+    version: "1.0.0"
+  flutter_ume_kit_ui:
+    dependency: "direct dev"
+    description:
+      path: "3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_ui"
+      relative: true
+    source: path
+    version: "1.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -630,6 +716,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  globbing:
+    dependency: transitive
+    description:
+      name: globbing
+      sha256: "4f89cfaf6fa74c9c1740a96259da06bd45411ede56744e28017cc534a12b6e2d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   go_router:
     dependency: "direct main"
     description:
@@ -678,6 +772,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: "8e9d133755c3e84c73288363e6343157c383a0c6c56fc51afcc5d4d7180306d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -743,13 +845,13 @@ packages:
     source: hosted
     version: "0.2.1+1"
   intl:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: intl
-      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.0"
+    version: "0.19.0"
   io:
     dependency: transitive
     description:
@@ -1166,6 +1268,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   recase:
     dependency: transitive
     description:
@@ -1174,6 +1284,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  rongcloud_im_wrapper_plugin:
+    dependency: "direct main"
+    description:
+      name: rongcloud_im_wrapper_plugin
+      sha256: "9318f3eb2ad4d11144c9273a8d9940950bde288dc147b2d02bedf101f7c2f7ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.6.12"
   rxdart:
     dependency: transitive
     description:
@@ -1182,6 +1300,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  share:
+    dependency: transitive
+    description:
+      name: share
+      sha256: "97e6403f564ed1051a01534c2fc919cb6e40ea55e60a18ec23cee6e0ce19f4be"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -1347,6 +1473,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0+1"
+  system_info:
+    dependency: transitive
+    description:
+      name: system_info
+      sha256: cc51ed8a89f1d2d4113e6d578838583884d453242de5180a096ad5e85d476193
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   term_glyph:
     dependency: transitive
     description:
@@ -1371,6 +1505,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  touch_indicator:
+    dependency: transitive
+    description:
+      name: touch_indicator
+      sha256: c7582fc10f433b795a0057036f7c74f050d32f7c317479cb9469ab849c7321c3
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      sha256: a97ce2013f240b2f3807bcbaf218765b6f301c3eff91092bcfa23a039e7dd151
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   typed_data:
     dependency: transitive
     description:
@@ -1484,7 +1634,7 @@ packages:
     source: hosted
     version: "2.1.4"
   vm_service:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: vm_service
       sha256: "3923c89304b715fb1eb6423f017651664a03bf5f4b29983627c4da791f74a4ec"
@@ -1595,5 +1745,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.4.3 <4.0.0"
+  dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.22.0"
