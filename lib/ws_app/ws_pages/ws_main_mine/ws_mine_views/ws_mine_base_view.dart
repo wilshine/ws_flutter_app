@@ -88,9 +88,7 @@ class WSMineBaseState<T extends StatefulWidget> extends State<T> {
                 () => CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 50.w,
-                  backgroundImage: Get.find<WSLoginController>().avatarPath.value.isNotEmpty
-                      ? FileImage(File(Get.find<WSLoginController>().avatarPath.value))
-                      : null,
+                  backgroundImage: Get.find<WSLoginController>().getAvatarImage(),
                 ),
               ),
             ),
