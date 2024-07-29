@@ -59,25 +59,26 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: WsRefreshListWidget(
-        refreshOnStart: true,
-        itemBuilder: (data, index) {
-          return buildItem(WSMessageItem(conversation: RCIMIWConversation.fromJson({
-            'unreadCount': index,
-            'lastMessage': {
-              'nickname': '张三',
-              'messageType': 1,
-              'receivedTime': DateTime.now().millisecondsSinceEpoch,
-            },
-          }), user: WSUserModel(
-              nickname: '李四'
-          )));
-        },
-        onRefresh: (page) {
-          return Future.value(ListResult(list: List.generate(10, (index) => index), hasMore: page < 3));
-        },
-      ),
+    return WsRefreshListWidget<RCIMIWConversation>(
+      refreshOnStart: true,
+      itemBuilder: (RCIMIWConversation data, index) {
+        return buildItem(WSMessageItem(conversation: data, user: WSUserModel(nickname: '李四$data')));
+      },
+      onLoad: null,
+      onRefresh: (page) {
+        return Future.value(ListResult(
+            list: List.generate(10, (index) {
+              return RCIMIWConversation.fromJson({
+                'unreadCount': index,
+                'lastMessage': {
+                  'nickname': '张三',
+                  'messageType': 1,
+                  'receivedTime': DateTime.now().millisecondsSinceEpoch,
+                },
+              });
+            }),
+            hasMore: false));
+      },
     );
   }
 
@@ -117,8 +118,8 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
                     height: 44,
                     margin: const EdgeInsets.only(left: 18, right: 10),
                     child: CircleAvatar(
-                      // backgroundImage: item.user?.getUrl != null ? NetworkImage(item.user?.getUrl ?? '') : null,
-                    ),
+                        // backgroundImage: item.user?.getUrl != null ? NetworkImage(item.user?.getUrl ?? '') : null,
+                        ),
                   ),
                   Positioned(
                     right: 0,

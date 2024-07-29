@@ -240,7 +240,6 @@ class WSConversationViewState extends State<WSConversationView>
 
               return Future.value(ListResult(list: _messages, hasMore: false));
             },
-            onRefresh: (index) {},
           ),
         ),
       ],

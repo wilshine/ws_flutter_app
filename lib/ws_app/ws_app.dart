@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../ws_services/ws_app_service.dart';
 import 'ws_app_route.dart';
@@ -44,6 +45,7 @@ class WSAppState extends State<WSApp> {
         key: Get.key,
         routerConfig: router,
         builder: EasyLoading.init(),
+
       ),
     );
   }

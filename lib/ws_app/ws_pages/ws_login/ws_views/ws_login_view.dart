@@ -327,7 +327,7 @@ class WSLoginViewState extends State<WSLoginView> {
     goToMainPage();
     if (isLoginSuccess) {
     } else {
-      WSToast.show('Login failed, please try again later.');
+      // WSToast.show('Login failed, please try again later.');
     }
     return isLoginSuccess;
   }

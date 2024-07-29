@@ -42,6 +42,8 @@ dependencies:
   ws_lint:
     path: ../ws_lint
 
+  extended_nested_scroll_view:
+
   rongcloud_im_wrapper_plugin:
 
 dependency_overrides:
