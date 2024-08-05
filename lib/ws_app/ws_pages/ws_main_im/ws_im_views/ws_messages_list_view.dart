@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rongcloud_im_wrapper_plugin/rongcloud_im_wrapper_plugin.dart';
+import 'package:ws_flutter_app/ws_app/ws_app_route.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_util.dart';
 import 'package:ws_flutter_app/ws_app/ws_models/ws_im_model.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_im/ws_im_controllers/ws_im_controller.dart';
@@ -29,8 +30,6 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
 
   @override
   void initState() {
-    // WSIMManager.getInstance().refreshMessageList();
-
     easyRefreshController = EasyRefreshController(
       controlFinishRefresh: true,
       controlFinishLoad: true,
@@ -41,13 +40,13 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
 
   @override
   void didChangeDependencies() {
-    WSAppUtil.routeObserver.subscribe(this, ModalRoute.of(context) as Route); //订阅
+    wsNavObserver.subscribe(this, ModalRoute.of(context) as Route); //订阅
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
-    WSAppUtil.routeObserver.unsubscribe(this); //取消订阅
+    wsNavObserver.unsubscribe(this); //取消订阅
     super.dispose();
   }
 
@@ -59,6 +58,7 @@ class _WSMessagesListViewState extends State<WSMessagesListView> with AutomaticK
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return WsRefreshListWidget<RCIMIWConversation>(
       refreshOnStart: true,
       itemBuilder: (RCIMIWConversation data, index) {

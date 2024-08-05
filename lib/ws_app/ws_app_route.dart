@@ -12,6 +12,8 @@ import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_mine/ws_mine_views/ws_min
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_splash/ws_views/ws_splash_view.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_webview/ws_web_view.dart';
 
+import 'ws_pages/ws_main_example/ws_example_views/ws_example_drag_gridview_view.dart';
+
 GoRouter router = GoRouter(
   initialLocation: '/splash',
   routes: <RouteBase>[deskAppRoute],
@@ -29,11 +31,11 @@ extension on Route<dynamic> {
 }
 
 class MyNavObserver extends RouteObserver {
-  MyNavObserver() {
-    Logger.info('MyNavObserver');
-  }
-
   static const tag = 'MyNavObserver';
+
+  MyNavObserver() {
+    Logger.info('MyNavObserver', tag: tag);
+  }
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
@@ -163,6 +165,13 @@ final RouteBase deskAppRoute = GoRoute(
           path: 'ws_example_build_view',
           builder: (BuildContext context, GoRouterState state) {
             return WsExampleBuildView();
+            // return WSConversationView(user: WSUserModel.fromJson(state.extra as Map<String, dynamic>));
+          },
+        ),
+        GoRoute(
+          path: 'drag_gridview',
+          builder: (BuildContext context, GoRouterState state) {
+            return GridGalleryExample();
             // return WSConversationView(user: WSUserModel.fromJson(state.extra as Map<String, dynamic>));
           },
         ),

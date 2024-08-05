@@ -10,170 +10,45 @@ class WsExampleFlutterSpinkitView extends StatefulWidget {
 
 class _WsExampleFlutterSpinkitViewState extends State<WsExampleFlutterSpinkitView> {
   static const kits = <Widget>[
-    SpinKitRotatingCircle(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitRotatingPlain(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitChasingDots(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPumpingHeart(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPulse(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitDoubleBounce(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitWave(
-      color: Colors.white,
-      type: SpinKitWaveType.start,
-      size: 30,
-    ),
-    SpinKitWave(
-      color: Colors.white,
-      type: SpinKitWaveType.center,
-      size: 30,
-    ),
-    SpinKitWave(
-      color: Colors.white,
-      type: SpinKitWaveType.end,
-      size: 30,
-    ),
-    SpinKitPianoWave(
-      color: Colors.white,
-      type: SpinKitPianoWaveType.start,
-      size: 30,
-    ),
-    SpinKitPianoWave(
-      color: Colors.white,
-      type: SpinKitPianoWaveType.center,
-      size: 30,
-    ),
-    SpinKitPianoWave(
-      color: Colors.white,
-      type: SpinKitPianoWaveType.end,
-      size: 30,
-    ),
-    SpinKitThreeBounce(
-      color: Colors.white,
-      size: 30,
-    ),
+    SpinKitRotatingCircle(color: Colors.white, size: 30),
+    SpinKitRotatingPlain(color: Colors.white, size: 30),
+    SpinKitChasingDots(color: Colors.white, size: 30),
+    SpinKitPumpingHeart(color: Colors.white, size: 30),
+    SpinKitPulse(color: Colors.white, size: 30),
+    SpinKitDoubleBounce(color: Colors.white, size: 30),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.start, size: 30),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.center, size: 30),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.end, size: 30),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.start, size: 30),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.center, size: 30),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.end, size: 30),
+    SpinKitThreeBounce(color: Colors.white, size: 30),
     SpinKitThreeInOut(color: Colors.white),
-    SpinKitWanderingCubes(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitWanderingCubes(
-      color: Colors.white,
-      shape: BoxShape.circle,
-      size: 30,
-    ),
-    SpinKitCircle(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitFadingFour(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitFadingFour(
-      color: Colors.white,
-      shape: BoxShape.rectangle,
-      size: 30,
-    ),
-    SpinKitFadingCube(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitCubeGrid(
-      size: 30.0,
-      color: Colors.white,
-    ),
-    SpinKitFoldingCube(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitRing(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitDualRing(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitSpinningLines(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitFadingGrid(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitFadingGrid(
-      color: Colors.white,
-      shape: BoxShape.rectangle,
-      size: 30,
-    ),
-    SpinKitSquareCircle(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitSpinningCircle(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitSpinningCircle(
-      color: Colors.white,
-      shape: BoxShape.rectangle,
-      size: 30,
-    ),
-    SpinKitFadingCircle(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPulsingGrid(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPulsingGrid(
-      color: Colors.white,
-      boxShape: BoxShape.rectangle,
-      size: 30,
-    ),
-    SpinKitHourGlass(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPouringHourGlass(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitPouringHourGlassRefined(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitRipple(
-      color: Colors.red,
-      size: 30,
-    ),
-    SpinKitDancingSquare(
-      color: Colors.white,
-      size: 30,
-    ),
-    SpinKitWaveSpinner(
-      color: Colors.white,
-      size: 30,
-    ),
+    SpinKitWanderingCubes(color: Colors.white, size: 30),
+    SpinKitWanderingCubes(color: Colors.white, shape: BoxShape.circle, size: 30),
+    SpinKitCircle(color: Colors.white, size: 30),
+    SpinKitFadingFour(color: Colors.white, size: 30),
+    SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle, size: 30),
+    SpinKitFadingCube(color: Colors.white, size: 30),
+    SpinKitCubeGrid(color: Colors.white, size: 30.0),
+    SpinKitFoldingCube(color: Colors.white, size: 30),
+    SpinKitRing(color: Colors.white, size: 30),
+    SpinKitDualRing(color: Colors.white, size: 30),
+    SpinKitSpinningLines(color: Colors.white, size: 30),
+    SpinKitFadingGrid(color: Colors.white, size: 30),
+    SpinKitFadingGrid(color: Colors.white, shape: BoxShape.rectangle, size: 30),
+    SpinKitSquareCircle(color: Colors.white, size: 30),
+    SpinKitSpinningCircle(color: Colors.white, size: 30),
+    SpinKitSpinningCircle(color: Colors.white, shape: BoxShape.rectangle, size: 30),
+    SpinKitFadingCircle(color: Colors.white, size: 30),
+    SpinKitPulsingGrid(color: Colors.white, size: 30),
+    SpinKitPulsingGrid(color: Colors.white, boxShape: BoxShape.rectangle, size: 30),
+    SpinKitHourGlass(color: Colors.white, size: 30),
+    SpinKitPouringHourGlass(color: Colors.white, size: 30),
+    SpinKitPouringHourGlassRefined(color: Colors.white, size: 30),
+    SpinKitRipple(color: Colors.red, size: 30),
+    SpinKitDancingSquare(color: Colors.white, size: 30),
+    SpinKitWaveSpinner(color: Colors.white, size: 30),
   ];
 
   @override

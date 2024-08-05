@@ -123,7 +123,8 @@ class _SearchInputState extends State<SearchBar> {
       },
       child: Container(
           margin: EdgeInsets.only(left: 16.0),
-          child: Image.memory(icon.iconBytes, width: 16, height: 16)),
+          // child: Image.memory(icon.iconBytes, width: 16, height: 16)),
+        child: Icon(Icons.cancel, size: 16, color: Colors.black38),),
     );
   }
 

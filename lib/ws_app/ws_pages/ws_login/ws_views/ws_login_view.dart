@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:common_tools/common_tools.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_util.dart';
@@ -268,6 +271,11 @@ class WSLoginViewState extends State<WSLoginView> {
   }
 
   void onEventFastLogin() {
+
+    XpToolPlatform.instance.getPlatformVersion().then((value) {
+      print('>>>>>value=$value');
+    },);
+
     currentLoginType = 0;
     // if (preLogin() == false) {
     //   return;

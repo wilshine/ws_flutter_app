@@ -10,6 +10,7 @@ import 'package:flutter_ume/util/floating_widget.dart';
 import 'package:flutter_ume/util/store_mixin.dart';
 import 'package:flutter_ume_kit_console/console/show_date_time_style.dart';
 
+/// 拦截debugPrint输出到Console面板
 class Console extends StatefulWidget implements PluggableWithStream {
   Console({Key? key}) {
     ConsoleManager.redirectDebugPrint();

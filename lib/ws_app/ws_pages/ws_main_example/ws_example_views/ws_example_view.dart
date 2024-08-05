@@ -14,6 +14,7 @@ class _WsExampleViewState extends State<WsExampleView> {
   List list = [
     {'desc': 'flutter_spinkit', 'routeName': '/main/flutter_spinkit'},
     {'desc': 'build生命周期演示', 'routeName': '/main/ws_example_build_view'},
+    {'desc': '拖拽演示', 'routeName': '/main/drag_gridview'},
   ];
 
   @override

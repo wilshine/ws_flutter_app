@@ -139,7 +139,7 @@ class _InspectorOverlayLayer extends Layer {
     final Paint borderPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0
-      ..color = kHighlightedRenderObjectBorderColor;
+      ..color = Colors.red;//kHighlightedRenderObjectBorderColor;
 
     final Rect selectedPaintRect = state.selected.rect.deflate(0.5);
     canvas
@@ -171,6 +171,7 @@ class _InspectorOverlayLayer extends Layer {
     return recorder.endRecording();
   }
 
+  /// Widget描述信息，属性信息、对应文件的行号
   void _paintDescription(
     Canvas canvas,
     String message,
@@ -231,7 +232,7 @@ class _InspectorOverlayLayer extends Layer {
       Offset(wedgeX + wedgeSize, wedgeY),
       Offset(wedgeX, wedgeY + (tooltipBelow ? -wedgeSize : wedgeSize)),
     ];
-    canvas.drawPath(Path()..addPolygon(wedge, true), tooltipBackground);
+    canvas.drawPath(Path()..addPolygon(wedge, true), tooltipBackground);//绘制三角形
     _textPainter!.paint(
         canvas, tipOffset + const Offset(kTooltipPadding, kTooltipPadding));
     canvas.restore();

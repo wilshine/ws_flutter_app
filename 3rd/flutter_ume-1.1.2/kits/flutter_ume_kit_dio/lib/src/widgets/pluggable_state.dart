@@ -23,7 +23,7 @@ ButtonStyle _buttonStyle(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(999999),
     ),
-    backgroundColor: Theme.of(context).primaryColor,
+    backgroundColor: Theme.of(context).primaryColor.withAlpha(100),
     // primary: Colors.white,
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
   );

@@ -146,10 +146,10 @@ class _DebugPaintButtonState extends State<_DebugPaintButton> {
   }
 
   void _showAllSize() async {
-    debugPaintSizeEnabled = !debugPaintSizeEnabled;
+    debugPaintSizeEnabled = !debugPaintSizeEnabled;//开关布局边界线
     setState(() {
       late RenderObjectVisitor visitor;
-      visitor = (RenderObject child) {
+      visitor = (RenderObject child) {//遍历所有子节点，触发重绘，重新显示边界线
         child.markNeedsPaint();
         child.visitChildren(visitor);
       };

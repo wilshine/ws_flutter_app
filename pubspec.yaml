@@ -70,6 +70,8 @@ dev_dependencies:
     path: ./3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_console/
   flutter_ume_kit_dio:
     path: ./3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_dio/
+  flutter_ume_kit_channel_monitor:
+    path: ./3rd/flutter_ume-1.1.2/kits/flutter_ume_kit_channel_monitor/
 
 
 flutter:

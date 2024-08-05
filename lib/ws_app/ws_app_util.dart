@@ -23,5 +23,4 @@ class WSAppUtil {
     );
   }
 
-  static final RouteObserver<Route<dynamic>> routeObserver = RouteObserver();
 }

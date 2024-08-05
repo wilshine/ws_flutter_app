@@ -80,6 +80,14 @@ class _WsExampleBuildViewState extends State<WsExampleBuildView> with RouteAware
     super.didUpdateWidget(oldWidget);
   }
 
+  /// 组件被移除时调用
+  @override
+  void deactivate() {
+    logInfo += 'deactivate\n';
+    Logger.info('deactivate');
+    super.deactivate();
+  }
+
   @override
   Widget build(BuildContext context) {
     logInfo += 'build\n';
@@ -98,6 +106,14 @@ class _WsExampleBuildViewState extends State<WsExampleBuildView> with RouteAware
               child: Text('打开新页面'),
               onPressed: () {
                 context.push('/main/setting');
+              },
+            ),
+            ElevatedButton(
+              child: Text('setState'),
+              onPressed: () {
+                setState(() {
+
+                });
               },
             ),
           ],

@@ -117,12 +117,12 @@ class _AlignRulerState extends State<AlignRuler> {
   @override
   Widget build(BuildContext context) {
     if (_windowSize.isEmpty) {
-      _windowSize = MediaQuery.of(context).size;
+      _windowSize = MediaQuery.sizeOf(context);
       _dotPosition = _windowSize.center(Offset.zero);
     }
     const TextStyle style = TextStyle(fontSize: 17, color: Colors.black);
     Widget toolBar = Container(
-      width: MediaQuery.of(context).size.width - 32,
+      width: MediaQuery.sizeOf(context).width - 32,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),

@@ -112,7 +112,7 @@ class _MenuPageState extends State<MenuPage>
                           )),
                     ],
                   ),
-                  Container(
+                  Flexible(
                       child: Text('UME',
                           style: const TextStyle(
                               fontSize: 60,
