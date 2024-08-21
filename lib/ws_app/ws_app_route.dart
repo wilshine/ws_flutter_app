@@ -118,34 +118,18 @@ final RouteBase deskAppRoute = GoRoute(
       },
       routes: [
         GoRoute(
-          path: 'mine',
-          builder: (BuildContext context, GoRouterState state) {
-            return Container();
-          },
-        ),
-        GoRoute(
-          path: 'im',
-          builder: (BuildContext context, GoRouterState state) {
-            return Container();
-          },
-        ),
-        GoRoute(
-          path: 'find',
-          builder: (BuildContext context, GoRouterState state) {
-            return Container();
-          },
-        ),
-        GoRoute(
-          path: 'about',
-          builder: (BuildContext context, GoRouterState state) {
-            return const WSMineAboutView();
-          },
-        ),
-        GoRoute(
           path: 'setting',
           builder: (BuildContext context, GoRouterState state) {
             return const WSMineSettingView();
           },
+          routes: [
+            GoRoute(
+              path: 'about',
+              builder: (BuildContext context, GoRouterState state) {
+                return const WSMineAboutView();
+              },
+            ),
+          ],
         ),
         GoRoute(
           path: 'conversation',

@@ -80,9 +80,6 @@ class _WSMineViewState extends WSMineBaseState<WSMineView> {
   Widget buildBottomWidget() {
     return Column(
       children: [
-        buildItem('关于', Icons.account_box_outlined, () {
-          context.push('/main/about');
-        }),
         buildItem('设置', Icons.settings, () {
           context.push('/main/setting');
         }, true),

@@ -19,12 +19,12 @@ class _WSMineAboutViewState extends WSMineBaseState<WSMineAboutView> {
     return Scaffold(
       body: Column(children: [
         SizedBox(height: context.mediaQueryPadding.top.h),
-        buildTopBar(title: 'About'),
+        buildTopBar(title: '关于'),
         SizedBox(height: 52.h),
         Container(
           alignment: Alignment.center,
           child: Text(
-            'MoovIntract',
+            'Hello World',
             style: TextStyle(color: const Color(0xFF202020), fontSize: 22.sp),
           ),
         ),

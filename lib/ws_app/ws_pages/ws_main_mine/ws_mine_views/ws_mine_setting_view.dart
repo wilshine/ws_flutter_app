@@ -2,6 +2,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ws_flutter_app/ws_app/ws_app_const.dart';
 import 'package:ws_flutter_app/ws_app/ws_pages/ws_main_mine/ws_mine_views/ws_mine_base_view.dart';
 import 'package:ws_flutter_app/ws_services/ws_app_service.dart';
@@ -89,9 +90,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () async {
-        WSDialogUtil.confirm('确认删除账号?', () async {
-          WSAppService.instance.deleteAccount();
-        });
+        context.push('/main/setting/about');
       },
       child: Container(
           height: 44.h,
@@ -106,7 +105,7 @@ class _WSMineSettingViewState extends WSMineBaseState<WSMineSettingView> {
                 child: Container(
                   margin: EdgeInsets.only(left: 20.w),
                   child: const Text(
-                    '删除账号',
+                    '关于',
                     style: TextStyle(
                       color: Color(0xFF404040),
                       fontSize: 16,
